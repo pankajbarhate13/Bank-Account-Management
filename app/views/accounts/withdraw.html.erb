@@ -1,0 +1,38 @@
+<%= form_for  @withdraw, :url => make_withdraw_account_path(params[:id]) do |f| %>
+
+	<% if @withdraw.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@withdraw.errors.count, "error") %> prohibited this withdraw from being saved:</h2>
+
+      <ul>
+      <% @withdraw.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="account">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">
+           <%= f.label :withdraw_amount, " Enter The Withdraw Amount" %> 
+        </div>
+        <div class="col-md-3">
+          <%= f.text_field :withdraw_amount, placeholder: "Enter amount you want to withdraw", required: true %>
+        </div>
+      </div>
+    </div></br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="actions">
+              <%= f.submit "Withdraw", class:"btn btn-primary", style:"line-height: 2.8rem;" %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  	
+<% end %>

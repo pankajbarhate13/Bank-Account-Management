@@ -1,0 +1,79 @@
+<div class="account_detail">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				 Account No : 
+			</div>
+			<div class="col-md-3">
+				<%= @account.id %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				 First Name : 
+			</div>
+			<div class="col-md-3">
+				<%= @account.first_name %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				Last Name : 
+			</div>
+			<div class="col-md-3">
+				<%= @account.last_name %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				 Phone No : 
+			</div>
+			<div class="col-md-3">
+				<%= @account.phone %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				Email :
+			</div>
+			<div class="col-md-3">
+				<%= @account.email %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				Address :  
+			</div>
+			<div class="col-md-3">
+				<%= @account.address %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-2">
+				 Current Balance : 
+			</div>
+			<div class="col-md-3">
+				Rs. <%= current_balance(@account.id)%>
+			</div>
+		</div>
+	</div>
+</div>
+

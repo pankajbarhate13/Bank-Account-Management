@@ -1,0 +1,53 @@
+<%= form_for  @transfer, :url => make_transfer_account_path(params[:id]) do |f| %>
+
+	<% if @transfer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transfer.errors.count, "error") %> prohibited this transfer from being saved:</h2>
+
+      <ul>
+      <% @transfer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="account">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <%= f.label :reciever_account_id , "Account No To Transfer " %>
+        </div>
+        <div class="col-md-3">
+        <%= f.text_field :reciever_account_id, placeholder: "Enter Account No", required: true %>
+        </div>
+      </div>
+    </div></br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <%= f.label :transfer_amount %>
+        </div>
+        <div class="col-md-3">
+          <%= f.text_field :transfer_amount, placeholder: "Enter amount you want to transfer", required: true %>
+        </div>
+      </div>
+    </div></br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="actions">
+              <%= f.submit "Transfer", class:"btn btn-primary", style:"line-height: 2.8rem;" %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ 
+
+<% end %>

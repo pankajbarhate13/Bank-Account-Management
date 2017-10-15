@@ -1,0 +1,59 @@
+  <p id="notice"><%= notice %></p>
+  <div class="account">
+    <div class="row">
+      <div class="col-md-12">
+
+        <h1>Statements</h1>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Account No</th>
+              <th>Transaction Type</th>
+              <th>Amount</th>
+              <th>Transaction Date</th>
+              <th>Payee Account No</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @statements.each do |statement| %>
+              <tr>
+                <td><%= statement.account_id %></td>
+
+                <% if statement.deposite_amount > 0.00  %>
+                  <td><%= "Deposite" %></td>
+                <% elsif statement.withdraw_amount > 0.00 %>
+                  <td><%= "Withdraw" %></td>
+                <% elsif statement.transfer_amount > 0.00  %>
+                  <td><%= "Transfer" %></td>
+                <% end %>
+
+                <% if statement.deposite_amount > 0.00 %>
+                  <td><%= statement.deposite_amount %></td>
+                <% elsif statement.withdraw_amount > 0.00 %>
+                  <td><%= statement.withdraw_amount %></td>
+                <% elsif statement.transfer_amount > 0.00  %>
+                  <td><%= statement.transfer_amount %></td>
+                <% end %>
+
+
+                <td><%= statement.created_at %></td>
+
+                <% if statement.transfer_amount > 0.00  %>
+                  <td><%= statement.reciever_account_id %></td>
+                <% else %>
+                  <td><%= "---" %></td>
+                <% end %>
+
+                
+              </tr>
+            <% end %>
+          </tbody>
+        </table><br>
+
+        
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,39 @@
+<%= form_for  @deposite, :url => make_deposite_account_path(params[:id]) do |f| %>
+
+	<% if @deposite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@deposite.errors.count, "error") %> prohibited this deposite from being saved:</h2>
+
+      <ul>
+      <% @deposite.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+	<div class="account">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-4">
+           <%= f.label :deposite_amount, " Enter The Deposite Amount" %> 
+        </div>
+        <div class="col-md-3">
+          <%= f.text_field :deposite_amount, placeholder: "Enter amount you want to deposite", required: true %>
+        </div>
+      </div>
+    </div></br>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="actions">
+              <%= f.submit "Deposite", class:"btn btn-primary", style:"line-height: 2.8rem;" %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>
