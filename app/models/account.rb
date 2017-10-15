@@ -1,7 +1,7 @@
 class Account < ActiveRecord::Base
 	#associations	
 	belongs_to :user
-	has_many :transactions
+	has_many :transactions, dependent: :destroy
 
 	# validations
 	validates :email, presence: true, email: true

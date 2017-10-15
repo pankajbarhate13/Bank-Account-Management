@@ -71,9 +71,14 @@ class AccountsController < ApplicationController
 
   # For deposite money
   def make_deposite
-    @dep = Transaction.create(account_id: params[:id], balance: params[:transaction][:deposite_amount], deposite_amount: params[:transaction][:deposite_amount])
-    flash[:notice] = "Deposite successfully !"
-    redirect_to account_url(params[:id])
+    if params[:transaction][:deposite_amount].to_i >= 1.0
+      @dep = Transaction.create(account_id: params[:id], balance: params[:transaction][:deposite_amount], deposite_amount: params[:transaction][:deposite_amount])
+      flash[:notice] = "Deposite successfully !"
+      redirect_to account_url(params[:id])
+    else 
+       flash[:error] = "Please enter correct deposite amount "
+      redirect_to request.referer
+    end
   end
 
   def withdraw
@@ -82,7 +87,7 @@ class AccountsController < ApplicationController
 
   # For withdraw money
   def make_withdraw
-    if current_balance(params[:id]).to_i > params[:transaction][:withdraw_amount].to_i
+    if params[:transaction][:withdraw_amount].to_i >= 1.0 and current_balance(params[:id]).to_i > params[:transaction][:withdraw_amount].to_i
       @wid = Transaction.create(account_id: params[:id], withdraw_amount: params[:transaction][:withdraw_amount])
       flash[:notice] = "Withdraw successfully !"
       redirect_to account_url(params[:id])
@@ -98,7 +103,7 @@ class AccountsController < ApplicationController
 
   # For transfer money
   def make_transfer
-    if current_balance(params[:id]).to_i > params[:transaction][:transfer_amount].to_i
+    if params[:transaction][:transfer_amount].to_i > 1.0 and current_balance(params[:id]).to_i > params[:transaction][:transfer_amount].to_i
       @tran = Transaction.create(account_id: params[:id], transfer_amount: params[:transaction][:transfer_amount], reciever_account_id: params[:transaction][:reciever_account_id], sender_account_id: params[:id])
       flash[:notice] = "Transfer successfully !"
       redirect_to account_url(params[:id])

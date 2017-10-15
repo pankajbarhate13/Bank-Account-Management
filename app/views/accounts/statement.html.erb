@@ -39,7 +39,7 @@
                 <% end %>
 
 
-                <td><%= statement.created_at %></td>
+                <td><%= statement.created_at.strftime('%d-%b-%Y %I:%M') %></td>
 
                 <% if statement.transfer_amount > 0.00  %>
                   <td><%= statement.reciever_account_id %></td>
